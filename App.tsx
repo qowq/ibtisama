@@ -3,9 +3,8 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// FIX: In this environment, we cannot import images as modules.
-// We must reference them by their URL string path.
-// Assuming images are located in the root directory.
+// FIX: We cannot import non-JS files (images) in a native ESM environment.
+// We must reference them by their URL path strings relative to the public root.
 const IMAGES = {
   logo: './logo.png',
   banner: './banner.png',
