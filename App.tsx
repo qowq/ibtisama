@@ -3,16 +3,17 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// FIX: In a native ESM environment (like this one using esm.sh), we cannot use 
-// "import logo from './logo.png'" because the browser tries to parse the image as JS.
-//
-// Instead, we use the standard `new URL(path, import.meta.url).href` pattern.
-// This tells the browser: "Find 'logo.png' in the same folder as this App.tsx file".
+// FIX: The local files do not exist in the current environment, causing 404 errors.
+// Switched to reliable external URLs for demonstration purposes so the UI renders correctly.
 const IMAGES = {
-  logo: new URL('./logo.png', import.meta.url).href,
-  banner: new URL('./banner.png', import.meta.url).href,
-  doctor: new URL('./dr-nawaf.png', import.meta.url).href,
-  team: new URL('./team.png', import.meta.url).href,
+  // Simple placeholder for the logo
+  logo: 'https://placehold.co/400x400/2563eb/ffffff?text=IBTISAMA+LOGO&font=roboto',
+  // Professional dental clinic background
+  banner: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80',
+  // Professional male doctor placeholder
+  doctor: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80',
+  // Medical team placeholder
+  team: 'https://images.unsplash.com/photo-1631217868269-df756080336a?auto=format&fit=crop&w=800&q=80',
 };
 
 export default function App() {
@@ -24,16 +25,15 @@ export default function App() {
     window.open('https://www.facebook.com/profile.php?id=100064209271838', '_blank');
   };
 
-  // Robust error handler: If local image fails (e.g. file missing), show a placeholder 
-  // so the UI isn't broken.
+  // Robust error handler
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.currentTarget;
     target.onerror = null; // Prevent infinite loop
     
-    // Fallback to a generated placeholder with the alt text
+    // Fallback to a generated placeholder with the alt text if the Unsplash links fail
     const text = encodeURIComponent(target.alt || 'Image Missing');
     target.src = `https://placehold.co/600x400/e2e8f0/1e3a8a?text=${text}`;
-    target.classList.add('opacity-80'); // Visual cue that this is a fallback
+    target.classList.add('opacity-80');
   };
 
   return (
@@ -62,7 +62,7 @@ export default function App() {
             <div className="h-12 w-12 relative overflow-hidden">
                 <img 
                     src={IMAGES.logo} 
-                    alt="Ibtisama" 
+                    alt="Ibtisama Logo" 
                     className="object-contain h-full w-full"
                     onError={handleImageError}
                 />
@@ -92,7 +92,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* Hero Section - Using the provided Banner */}
+      {/* Hero Section */}
       <section className="relative w-full bg-blue-50">
         <div className="w-full">
           <img 
