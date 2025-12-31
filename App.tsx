@@ -3,17 +3,12 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// FIX: The local files do not exist in the current environment, causing 404 errors.
-// Switched to reliable external URLs for demonstration purposes so the UI renders correctly.
+// FIX: Updated to use specific external links provided for Ibtisama Clinic assets
 const IMAGES = {
-  // Simple placeholder for the logo
-  logo: 'https://placehold.co/400x400/2563eb/ffffff?text=IBTISAMA+LOGO&font=roboto',
-  // Professional dental clinic background
-  banner: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80',
-  // Professional male doctor placeholder
-  doctor: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80',
-  // Medical team placeholder
-  team: 'https://images.unsplash.com/photo-1631217868269-df756080336a?auto=format&fit=crop&w=800&q=80',
+  logo: 'https://scontent.fbah9-1.fna.fbcdn.net/v/t39.30808-1/302746533_458728382944134_5380216355372768081_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=7pzaq4MjMlEQ7kNvwEBwuLD&_nc_oc=AdkqWjJHnZs318lBnTxXMCHsgsjlze40648rWj_kXPb-fdx94kBwK9X3VxdAcDm6i8s&_nc_zt=24&_nc_ht=scontent.fbah9-1.fna&_nc_gid=kETpnYih7mrCAoPNMGCg6g&oh=00_Afn0U63EEhzSrd0SHl3V10o5ROBjZsySIQTSMqKENk62Pw&oe=695ACD7A',
+  banner: 'https://scontent.fbah9-1.fna.fbcdn.net/v/t39.30808-6/305756721_458728379610801_5061423831622357648_n.png?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=--G7FSMAMywQ7kNvwEPppUm&_nc_oc=Adnk5PwnByjtHGcLMqeNE-vimOE2NG-A_u3i9hhMVi0PB-qLEV0v9SqX_cyUlE0qQpw&_nc_zt=23&_nc_ht=scontent.fbah9-1.fna&_nc_gid=kETpnYih7mrCAoPNMGCg6g&oh=00_AfmWej0bYBTwKD1cqzAAKu49LMAAFgBGjdw4vqIvItfGsg&oe=695ADFDC',
+  doctor: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDtmI5zvojC2p20dmRceGUwtLFaRD8CnuHIg&s',
+  team: 'https://pbs.twimg.com/media/DYuYmzFWAAAHFCI.jpg',
 };
 
 export default function App() {
@@ -30,7 +25,7 @@ export default function App() {
     const target = e.currentTarget;
     target.onerror = null; // Prevent infinite loop
     
-    // Fallback to a generated placeholder with the alt text if the Unsplash links fail
+    // Fallback to a generated placeholder with the alt text if links expire or fail
     const text = encodeURIComponent(target.alt || 'Image Missing');
     target.src = `https://placehold.co/600x400/e2e8f0/1e3a8a?text=${text}`;
     target.classList.add('opacity-80');
@@ -63,7 +58,7 @@ export default function App() {
                 <img 
                     src={IMAGES.logo} 
                     alt="Ibtisama Logo" 
-                    className="object-contain h-full w-full"
+                    className="object-contain h-full w-full rounded-full"
                     onError={handleImageError}
                 />
             </div>
