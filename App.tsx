@@ -3,13 +3,13 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// Use new URL(..., import.meta.url) to correctly reference assets in ESM/Vite environments
-// This avoids "bare specifier" errors and ensures Vite processes the files.
+// Use direct string paths. 
+// Since images are in the root alongside index.html, referencing them by filename works.
 const IMAGES = {
-  logo: new URL('./logo.png', import.meta.url).href,
-  banner: new URL('./banner.png', import.meta.url).href,
-  doctor: new URL('./dr-nawaf.png', import.meta.url).href,
-  team: new URL('./team.png', import.meta.url).href,
+  logo: '/logo.png',
+  banner: '/banner.png',
+  doctor: '/dr-nawaf.png',
+  team: '/team.png',
 };
 
 export default function App() {
