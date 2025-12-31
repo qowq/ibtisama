@@ -3,12 +3,12 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// FIX: Use absolute paths relative to the public root to ensure they load correctly when deployed.
+// Use relative paths. This assumes images are in the same folder as index.html
 const IMAGES = {
-  logo: '/logo.png',
-  banner: '/banner.png',
-  doctor: '/dr-nawaf.png',
-  team: '/team.png',
+  logo: './logo.png',
+  banner: './banner.png',
+  doctor: './dr-nawaf.png',
+  team: './team.png',
 };
 
 export default function App() {
@@ -18,6 +18,16 @@ export default function App() {
 
   const handleFacebookVisit = () => {
     window.open('https://www.facebook.com/profile.php?id=100064209271838', '_blank');
+  };
+
+  // Robust error handler: If local image fails, show a placeholder so the UI isn't empty
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    target.onerror = null; // Prevent infinite loop
+    // Fallback to a generated placeholder with the alt text
+    const text = encodeURIComponent(target.alt || 'Image Missing');
+    target.src = `https://placehold.co/600x400/e2e8f0/1e3a8a?text=${text}`;
+    target.classList.add('opacity-80'); // Visual cue that this is a fallback
   };
 
   return (
@@ -46,12 +56,9 @@ export default function App() {
             <div className="h-12 w-12 relative overflow-hidden">
                 <img 
                     src={IMAGES.logo} 
-                    alt="Ibtisama Logo" 
+                    alt="Ibtisama" 
                     className="object-contain h-full w-full"
-                    onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.parentElement?.classList.add('bg-blue-100', 'rounded-full', 'flex', 'items-center', 'justify-center');
-                    }}
+                    onError={handleImageError}
                 />
             </div>
             <div>
@@ -84,11 +91,9 @@ export default function App() {
         <div className="w-full">
           <img 
             src={IMAGES.banner} 
-            alt="Your Trusted Dental Center in Bahrain" 
+            alt="Dental Center Banner" 
             className="w-full h-auto object-cover max-h-[500px]"
-            onError={(e) => {
-                e.currentTarget.style.display = 'none';
-            }}
+            onError={handleImageError}
           />
            <div className="hidden md:block absolute bottom-10 left-0 right-0 text-center pointer-events-none">
               <div className="inline-block bg-white/95 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg pointer-events-auto">
@@ -121,9 +126,9 @@ export default function App() {
                 <div className="order-2 md:order-1">
                     <img 
                         src={IMAGES.doctor} 
-                        alt="Dr. Nawaf Al Hamar with Invisalign Award" 
-                        className="rounded-lg shadow-xl w-full object-cover"
-                        onError={(e) => {e.currentTarget.style.backgroundColor = '#f3f4f6'}}
+                        alt="Dr. Nawaf Al Hamar" 
+                        className="rounded-lg shadow-xl w-full object-cover max-h-[400px]"
+                        onError={handleImageError}
                     />
                     <p className="text-center text-sm text-gray-500 mt-2">Dr. Nawaf Al Hamar - Consultant Orthodontist</p>
                 </div>
@@ -180,8 +185,8 @@ export default function App() {
                     <img 
                         src={IMAGES.team} 
                         alt="Ibtisama Team" 
-                        className="relative rounded-lg shadow-lg w-full object-cover transform -rotate-2 hover:rotate-0 transition-transform duration-300"
-                        onError={(e) => {e.currentTarget.style.backgroundColor = '#e5e7eb'}}
+                        className="relative rounded-lg shadow-lg w-full object-cover transform -rotate-2 hover:rotate-0 transition-transform duration-300 max-h-[400px]"
+                        onError={handleImageError}
                     />
                  </div>
             </div>
