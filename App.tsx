@@ -5,10 +5,10 @@ import Footer from './components/Footer';
 
 // Use relative paths. This assumes images are in the same folder as index.html
 const IMAGES = {
-  logo: './logo.png',
-  banner: './banner.png',
-  doctor: './dr-nawaf.png',
-  team: './team.png',
+  logo: '/logo.png',
+  banner: '/banner.png',
+  doctor: '/dr-nawaf.png',
+  team: '/team.png',
 };
 
 export default function App() {
