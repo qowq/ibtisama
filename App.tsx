@@ -3,12 +3,16 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// Use relative paths. This assumes images are in the same folder as index.html
+// FIX: In a native ESM environment (like this one using esm.sh), we cannot use 
+// "import logo from './logo.png'" because the browser tries to parse the image as JS.
+//
+// Instead, we use the standard `new URL(path, import.meta.url).href` pattern.
+// This tells the browser: "Find 'logo.png' in the same folder as this App.tsx file".
 const IMAGES = {
-  logo: '/logo.png',
-  banner: '/banner.png',
-  doctor: '/dr-nawaf.png',
-  team: '/team.png',
+  logo: new URL('./logo.png', import.meta.url).href,
+  banner: new URL('./banner.png', import.meta.url).href,
+  doctor: new URL('./dr-nawaf.png', import.meta.url).href,
+  team: new URL('./team.png', import.meta.url).href,
 };
 
 export default function App() {
@@ -20,10 +24,12 @@ export default function App() {
     window.open('https://www.facebook.com/profile.php?id=100064209271838', '_blank');
   };
 
-  // Robust error handler: If local image fails, show a placeholder so the UI isn't empty
+  // Robust error handler: If local image fails (e.g. file missing), show a placeholder 
+  // so the UI isn't broken.
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.currentTarget;
     target.onerror = null; // Prevent infinite loop
+    
     // Fallback to a generated placeholder with the alt text
     const text = encodeURIComponent(target.alt || 'Image Missing');
     target.src = `https://placehold.co/600x400/e2e8f0/1e3a8a?text=${text}`;
