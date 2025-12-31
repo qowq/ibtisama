@@ -3,13 +3,14 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// Use direct string paths. 
-// Since images are in the root alongside index.html, referencing them by filename works.
+// FIX: In this environment, we cannot import images as modules.
+// We must reference them by their URL string path.
+// Assuming images are located in the root directory.
 const IMAGES = {
-  logo: '/logo.png',
-  banner: '/banner.png',
-  doctor: '/dr-nawaf.png',
-  team: '/team.png',
+  logo: './logo.png',
+  banner: './banner.png',
+  doctor: './dr-nawaf.png',
+  team: './team.png',
 };
 
 export default function App() {
