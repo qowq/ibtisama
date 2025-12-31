@@ -3,13 +3,12 @@ import { Phone, MapPin, Clock, Award, Facebook } from 'lucide-react';
 import Button from './components/Button';
 import Footer from './components/Footer';
 
-// FIX: We cannot import non-JS files (images) in a native ESM environment.
-// We must reference them by their URL path strings relative to the public root.
+// FIX: Use absolute paths relative to the public root to ensure they load correctly when deployed.
 const IMAGES = {
-  logo: './logo.png',
-  banner: './banner.png',
-  doctor: './dr-nawaf.png',
-  team: './team.png',
+  logo: '/logo.png',
+  banner: '/banner.png',
+  doctor: '/dr-nawaf.png',
+  team: '/team.png',
 };
 
 export default function App() {
