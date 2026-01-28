@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Facebook } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -26,14 +27,18 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links (Visual Filler) */}
+          {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
+            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
                 <li>Orthodontics (Invisalign)</li>
                 <li>General Dentistry</li>
                 <li>Cosmetic Dentistry</li>
-                <li>Oral Hygiene</li>
+                <li>
+                  <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
             </ul>
           </div>
 
